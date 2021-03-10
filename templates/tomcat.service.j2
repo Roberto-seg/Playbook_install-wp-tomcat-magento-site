@@ -1,0 +1,19 @@
+[Unit]
+Description=Apache Tomcat Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment=CATALINA_PID=/opt/tomcat/apache-tomcat-9.0.43/temp/tomcat.pid
+Environment=CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.43
+Environment=CATALINA_BASE=/opt/tomcat/apache-tomcat-9.0.43
+ExecStart=/opt/tomcat/apache-tomcat-9.0.43/bin/catalina.sh start
+ExecStop=/opt/tomcat/apache-tomcat-9.0.43/bin/catalina.sh stop
+
+RestartSec=10
+Restart=always
+[Install]
+WantedBy=multi-user.target

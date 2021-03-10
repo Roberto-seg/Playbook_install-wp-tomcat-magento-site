@@ -1,0 +1,16 @@
+upstream tomcat {
+ server 127.0.0.1:8080 weight=100 max_fails=5 fail_timeout=5;
+ }
+ 
+ server {
+ listen 80;
+ server_name tom.segundorobtech.tk;
+ 
+ location / {
+ proxy_set_header X-Forwarded-Host $host;
+ proxy_set_header X-Forwarded-Server $host;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_pass http://127.0.0.1:8080/;
+ }
+ }
+

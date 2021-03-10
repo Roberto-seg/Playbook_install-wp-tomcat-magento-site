@@ -1,0 +1,16 @@
+upstream fastcgi_backend {
+  server   unix:/run/php-fpm/www.sock;
+}
+
+server {
+    listen 80;
+    server_name loja.segundorobtech.tk;
+
+    set $MAGE_ROOT /var/www/html/loja.segundorobtech.tk/magento2-2.3;
+    set $MAGE_MODE developer;
+
+    access_log /var/log/nginx/magento-access.log;
+    error_log /var/log/nginx/magento-error.log;
+
+    include /var/www/html/loja.segundorobtech.tk/magento2-2.3/nginx.conf.sample;
+}
