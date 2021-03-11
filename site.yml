@@ -5,15 +5,15 @@
   remote_user: centos
   become_method: sudo
   vars:
-    passwd_db: cap1267
+    passwd_db: --> senha banco
     mysql_database: wpdatabase
     mysql_user: wpuser
     mysql_senha: adminadmin
     mysql_database2: magento
     mysql_user2: magentouser
     mysql_senha2: admin123
-    api_user: 9d482f6ffe85c41d552532deeef5ad4a
-    api_pass: 7b73588749b13c19e0ff1f3aa6a6b8a1
+    api_user: ---> user do site do magento
+    api_pass: ----> senha do site do magento
   tasks:
   - name: Update S.O
     yum:
@@ -530,11 +530,11 @@
     service:
       name: nginx
       state: restarted
- #- name: Instalando certbot
-   # yum:
-     # name: python2-certbot-nginx
-      #state: present
-  #- name: Aplicando SSL no blog1
-   # shell: certbot --nginx -d blog1.segundorobtech.tk	-d www.segundorobtech.tk	-d tom.segundorobtech.tk -d tom.segundorobtech.tk --email robertosilvaseg0@gmail.com --agree-tos
+ - name: Instalando certbot
+    yum:
+      name: python2-certbot-nginx
+      state: present
+ - name: Aplicando SSL no blog1
+   shell: certbot --nginx -d blog1.segundorobtech.tk	-d www.segundorobtech.tk	-d tom.segundorobtech.tk -d tom.segundorobtech.tk --email robertosilvaseg0@gmail.com --agree-tos
 
 
